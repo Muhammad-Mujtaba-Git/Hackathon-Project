@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-abyss: #030814;
+  --color-deep: #071226;
+  --color-panel: #0a1830;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #030814;
+  color: #dbe7f5;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Surfaces ---------- */
+.ff-glass {
+  position: relative;
+  background: linear-gradient(180deg, rgba(125, 190, 255, 0.07), rgba(125, 190, 255, 0.025));
+  border: 1px solid rgba(148, 197, 255, 0.13);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 30px 60px -40px rgba(0, 0, 0, 0.9);
+}
+
+.ff-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.ff-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+
+.ff-gradient-text {
+  background: linear-gradient(100deg, #a5f3fc 0%, #22d3ee 38%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ff-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 197, 255, 0.25) transparent;
+}
+
+/* ---------- Motion ---------- */
+@keyframes ff-ring {
+  0% {
+    transform: scale(0.25);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes ff-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ff-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(-140px, 60px, 0);
+    opacity: 0;
+  }
+}
+@keyframes ff-flow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+@keyframes ff-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes ff-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.ff-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ff-ring 3.4s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.ff-sweep {
+  animation: ff-sweep 40s linear infinite;
+}
+.ff-flow {
+  stroke-dasharray: 4 12;
+  animation: ff-flow 1.6s linear infinite;
+}
+.ff-blink {
+  animation: ff-blink 1.8s ease-in-out infinite;
+}
+.ff-float {
+  animation: ff-float 7s ease-in-out infinite;
+}
+.ff-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 9999px;
+  background: #7dd3fc;
+  animation: ff-drift linear infinite;
+}
+
+/* ---------- Leaflet (dark mission-control styling) ---------- */
+.leaflet-container {
+  background: #050d1c;
+  font-family: var(--font-sans);
+  border-radius: 1rem;
+}
+.ff-basemap {
+  filter: invert(1) hue-rotate(188deg) brightness(0.92) contrast(0.88) saturate(0.5);
+}
+.leaflet-control-attribution {
+  background: rgba(3, 8, 20, 0.78) !important;
+  color: #9fb3c8 !important;
+  font-size: 10px !important;
+  border-top-left-radius: 8px;
+}
+.leaflet-control-attribution a {
+  color: #7dd3fc !important;
+}
+.leaflet-bar {
+  border: 1px solid rgba(148, 197, 255, 0.22) !important;
+  box-shadow: none !important;
+}
+.leaflet-bar a {
+  background: #0a1830 !important;
+  color: #cfe8ff !important;
+  border-bottom-color: rgba(148, 197, 255, 0.18) !important;
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+}
+.leaflet-bar a:hover {
+  background: #10254a !important;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-tooltip {
+  background: #0a1830 !important;
+  color: #dbe7f5 !important;
+  border: 1px solid rgba(148, 197, 255, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+.leaflet-tooltip::before {
+  display: none;
+}
+.ff-marker {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+.ff-marker-dot {
+  position: absolute;
+  inset: 16px;
+  border-radius: 9999px;
+  background: #ecfeff;
+  box-shadow:
+    0 0 0 3px rgba(34, 211, 238, 0.55),
+    0 0 18px 4px rgba(34, 211, 238, 0.7);
+}
+.ff-marker-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(34, 211, 238, 0.8);
+  animation: ff-ring 3s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.ff-marker-ring-2 {
+  animation-delay: 1.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .ff-particle,
+  .ff-marker-ring {
+    display: none;
+  }
+}
